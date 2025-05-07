@@ -35,7 +35,8 @@ texts = {
     'EN': "Did you ever hear a folk tale about a giant turtle?",
     'ES': "El resplandor del sol acaricia las olas, pintando el cielo con una paleta deslumbrante.",
     'FR': "La lueur dorée du soleil caresse les vagues, peignant le ciel d'une palette éblouissante.",
-    'ZH': "在这次vacation中，我们计划去Paris欣赏埃菲尔铁塔和卢浮宫的美景。",
+    # 'ZH': "在这次vacation中，我们计划去Paris欣赏埃菲尔铁塔和卢浮宫的美景。",
+    'ZH': "我们的历史证明了我们的成就和失败，是一个持续进步和倒退、创新和毁灭的叙述。我们建立文明，发展复杂的社会结构，并通过复杂的语言进行交流，但我们也面临着冲突、不平等以及我们自身死亡的根本问题。",
     'JP': "彼は毎朝ジョギングをして体を健康に保っています。",
     'KR': "안녕하세요! 오늘은 날씨가 정말 좋네요.",
 }
