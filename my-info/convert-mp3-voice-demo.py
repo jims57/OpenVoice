@@ -28,8 +28,8 @@ reference_speaker = 'reference-mp3/情感女声.wav'
 target_se, audio_name = se_extractor.get_se(reference_speaker, tone_color_converter, vad=True)
 
 # Source audio file (voice to be converted)
-# source_audio_path = 'melo-mp3/20250401074538.wav'
-source_audio_path = 'melo-mp3/1746619459342-melo-1.mp3'
+source_audio_path = 'melo-mp3/20250401074538.wav'
+# source_audio_path = 'melo-mp3/1746619459342-melo-1.mp3'
 # source_audio_path = 'melo-mp3/20250401074538.wav'
 
 # Extract source embedding
