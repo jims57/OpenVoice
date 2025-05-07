@@ -139,6 +139,23 @@ class ToneColorConverter(OpenVoiceBaseClass):
         return gs
 
     def convert(self, audio_src_path, src_se, tgt_se, output_path=None, tau=0.3, message="default"):
+        """
+        Convert the tone color of source audio to target.
+        
+        Args:
+            audio_src_path: Path to source audio file
+            src_se: Source speaker embedding
+            tgt_se: Target speaker embedding
+            output_path: Path to save converted audio (if None, returns audio array)
+            tau: Temperature parameter controlling the trade-off between content preservation 
+                 and tone color similarity. Lower values (e.g., 0.1) better preserve content 
+                 but with less tone color similarity, while higher values (e.g., 0.7) achieve 
+                 better tone color conversion but may alter content more.
+            message: Watermark message to embed in the audio
+            
+        Returns:
+            If output_path is None, returns the converted audio as numpy array
+        """
         hps = self.hps
         # load audio
         audio, sample_rate = librosa.load(audio_src_path, sr=hps.data.sampling_rate)
