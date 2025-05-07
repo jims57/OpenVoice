@@ -127,6 +127,31 @@ def hash_numpy_array(audio_path):
     return base64_value.decode('utf-8')[:16].replace('/', '_^')
 
 def get_se(audio_path, vc_model, target_dir='processed', vad=True):
+    """
+    This function extracts speaker embeddings (SE) from an audio file for voice conversion.
+    
+    The function works as follows:
+    1. It creates a unique identifier for the audio file based on its name, model version, and content hash
+    2. It determines where to save the extracted speaker embedding
+    3. It splits the audio into segments using either VAD (Voice Activity Detection) or Whisper
+       to isolate speech portions and remove silence
+    4. It extracts speaker embeddings from these segments using the provided voice conversion model
+    
+    Parameters:
+    - audio_path: Path to the input audio file containing the voice to extract embeddings from
+    - vc_model: The voice conversion model that contains the extract_se method
+    - target_dir: Directory where processed files and embeddings will be stored (default: 'processed')
+    - vad: Boolean flag to use Voice Activity Detection for audio segmentation (default: True)
+          If False, it uses Whisper-based segmentation instead
+    
+    Returns:
+    - A tuple containing:
+      1. The extracted speaker embedding tensor
+      2. The unique audio name identifier used for file organization
+    
+    Note: The commented-out code suggests this function previously had caching functionality
+    to avoid re-extracting embeddings for previously processed audio files.
+    """
     device = vc_model.device
     version = vc_model.version
     print("OpenVoice version:", version)
@@ -145,6 +170,11 @@ def get_se(audio_path, vc_model, target_dir='processed', vad=True):
     else:
         wavs_folder = split_audio_whisper(audio_path, target_dir=target_dir, audio_name=audio_name)
     
+    # Use glob to find all .wav files in the wavs_folder directory
+    # glob is a utility function that returns a list of paths matching a pathname pattern
+    # In this case, it finds all .wav files in the specified directory
+    # glob is a module that finds all pathnames matching a specified pattern
+    # Here it's used to find all .wav files in the wavs_folder directory
     audio_segs = glob(f'{wavs_folder}/*.wav')
     if len(audio_segs) == 0:
         raise NotImplementedError('No audio segments found!')
